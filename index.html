@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>ESTOQUE VIU INTERNET</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('body.png') no-repeat center center;
+      background-size: cover;
+    }
+
+    .conteudo {
+      background: rgba(255, 255, 255, 0.7); /* cor com transparência para destacar */
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 700px;
+    }
+
+    .paragrafo-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .paragrafo-container p {
+      margin: 0;
+      padding-right: 10px;
+      flex: 1;
+    }
+
+    button {
+      padding: 4px 10px;
+      cursor: pointer;
+    }
+
+    h1, h2, h3 {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .container {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ESTOQUE SUPERPODEROSO: produzido por Felipe</h1>
+
+    <div class="conteudo">
+      <div class="paragrafo-container"><p>ONT F3 DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+      <div class="paragrafo-container"><p>ZTE E ONU DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+      <div class="paragrafo-container"><p>ONT 45F DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+      <div class="paragrafo-container"><p>G5 E ONU FIBERHOME DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+      <div class="paragrafo-container"><p>C5 E ONU FIBERHOME DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+      <div class="paragrafo-container"><p>ONT D3 DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+      <div class="paragrafo-container"><p>C20 E ONU FIBERHOME DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+      <div class="paragrafo-container"><p>ZTE E PARKS DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+      <div class="paragrafo-container"><p>ZTE E ONU MINI DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+      <div class="paragrafo-container"><p>G5 E ONU MINI DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+      <div class="paragrafo-container"><p>SR E ONU MINI DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+      <div class="paragrafo-container"><p>SR E ONU R1 DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+      <div class="paragrafo-container"><p>ZTE E ONU R1 DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+      <div class="paragrafo-container"><p>ZTE E ONU EASY LINK DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+      <div class="paragrafo-container"><p>G5 E ONU EASY LINK DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+
+      <h2>TROCAS DE TITULARIDADE</h2>
+      <div class="paragrafo-container"><p>TROCA DE TITULARIDADE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+
+      <h3>AJUSTE DE ESTOQUE</h3>
+      <div class="paragrafo-container"><p>VINCULADO EQUIPAMENTO</p><button onclick="copiarTexto(this)">Copiar</button></div>
+      <div class="paragrafo-container"><p>DESVINCULADO EQUIPAMENTO</p><button onclick="copiarTexto(this)">Copiar</button></div>
+      <div class="paragrafo-container"><p>AJUSTADO</p><button onclick="copiarTexto(this)">Copiar</button></div>
+      <div class="paragrafo-container"><p>DESVINCULADO EQUIPAMENTO DO CLIENTE COMO EXTRAVIADO</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    </div>
+  </div>
+
+  <script>
+    function copiarTexto(botao) {
+      const texto = botao.previousElementSibling.innerText;
+      navigator.clipboard.writeText(texto).then(() => {
+        botao.innerText = "Copiado!";
+        setTimeout(() => botao.innerText = "Copiar", 1500);
+      });
+    }
+  </script>
+</body>
+</html>
