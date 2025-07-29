@@ -3,59 +3,194 @@
 <head>
   <meta charset="UTF-8">
   <title>ESTOQUE VIU INTERNET</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('body.png') no-repeat center center fixed;
+      background-size: cover;
+      padding-top: 80px;
+      color: #333;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #00aeff;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+    }
+
+    nav .logo {
+      font-weight: bold;
+      font-size: 1.3em;
+    }
+
+    nav .links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 25px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav .links a:hover {
+      color: #002f46;
+    }
+
+    .container {
       display: flex;
       justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: url('body.png') no-repeat center center;
-      background-size: cover;
+      padding: 30px 15px;
     }
 
     .conteudo {
-      background: rgba(255, 255, 255, 0.7); /* cor com transparência para destacar */
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 16px;
       padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      max-width: 700px;
+      max-width: 800px;
+      width: 100%;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    h1 {
+      font-size: 2em;
+    }
+
+    .anotacoes {
+      margin-bottom: 30px;
+    }
+
+    .anotacoes textarea {
+      width: 100%;
+      height: 120px;
+      padding: 12px;
+      font-size: 1em;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      resize: vertical;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    .anotacoes button {
+      margin-top: 10px;
+      padding: 10px 16px;
+      background-color: #00aeff;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .anotacoes button:hover {
+      background-color: #007bbd;
+      transform: scale(1.05);
     }
 
     .paragrafo-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      background-color: #f1f1f1;
+      padding: 12px 16px;
       margin-bottom: 10px;
+      border-radius: 8px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .paragrafo-container:hover {
+      background-color: #e0f4ff;
+      transform: scale(1.01);
     }
 
     .paragrafo-container p {
       margin: 0;
-      padding-right: 10px;
       flex: 1;
+      font-size: 1em;
     }
 
     button {
-      padding: 4px 10px;
+      padding: 6px 14px;
+      background-color: #00aeff;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
       cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
     }
 
-    h1, h2, h3 {
-      margin-top: 20px;
-      text-align: center;
+    button:hover {
+      background-color: #007bbd;
+      transform: scale(1.05);
     }
 
-    .container {
-      text-align: center;
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav .links {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .paragrafo-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      button {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>ESTOQUE SUPERPODEROSO: produzido por Felipe</h1>
 
+  <nav>
+    <div class="logo">ESTOQUE VIU</div>
+    <div class="links">
+      <a href="https://felpsret.github.io/ESTOQUE-VIU/" target="_blank">Página Inicial</a>
+    </div>
+  </nav>
+
+  <div class="container">
     <div class="conteudo">
+      <h1>ESTOQUE SUPERPODEROSO: produzido por Felipe</h1>
+
+      <!-- Área de Anotações -->
+      <div class="anotacoes">
+        <h2>Área de Anotações</h2>
+        <textarea id="anotacoes" placeholder="Escreva suas observações aqui..."></textarea>
+        <button onclick="copiarAnotacoes()">Copiar Anotações</button>
+      </div>
+
+      <!-- Lista principal -->
       <div class="paragrafo-container"><p>ONT F3 DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
       <div class="paragrafo-container"><p>ZTE E ONU DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
       <div class="paragrafo-container"><p>ONT 45F DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
@@ -91,6 +226,18 @@
         setTimeout(() => botao.innerText = "Copiar", 1500);
       });
     }
+
+    function copiarAnotacoes() {
+      const texto = document.getElementById("anotacoes").value;
+      if (texto.trim()) {
+        navigator.clipboard.writeText(texto).then(() => {
+          alert("Anotações copiadas com sucesso!");
+        });
+      } else {
+        alert("O campo de anotações está vazio.");
+      }
+    }
   </script>
 </body>
 </html>
+
