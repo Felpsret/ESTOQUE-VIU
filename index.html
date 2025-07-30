@@ -1,271 +1,130 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>ESTOQUE VIU INTERNET</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estoque Superpoderoso</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: url('body.png') no-repeat center center fixed;
-      background-size: cover;
-      padding-top: 80px;
-      color: #333;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      padding: 20px;
     }
 
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
+    .aba-botao {
+      padding: 10px 16px;
+      border: none;
       background-color: #00aeff;
       color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
-    }
-
-    nav .logo {
+      border-radius: 8px;
+      cursor: pointer;
       font-weight: bold;
-      font-size: 1.3em;
+      transition: background-color 0.3s, transform 0.2s;
     }
 
-    nav .links a {
-      color: white;
-      text-decoration: none;
-      margin-left: 25px;
-      font-weight: bold;
-      transition: color 0.3s;
+    .aba-botao:hover {
+      background-color: #007bbd;
+      transform: scale(1.05);
     }
 
-    nav .links a:hover {
-      color: #002f46;
+    .aba-botao.ativo {
+      background-color: #007bbd;
     }
 
-    .container {
-      display: flex;
-      justify-content: center;
-      padding: 30px 15px;
+    .aba-conteudo {
+      margin-top: 20px;
+      margin-bottom: 30px;
+      display: none;
     }
 
-    .conteudo {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 16px;
-      padding: 30px;
-      max-width: 800px;
+    .select-abas {
       width: 100%;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    }
-
-    h1, h2, h3 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #222;
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 6px;
+      margin-bottom: 10px;
     }
 
     h1 {
-      font-size: 2em;
-    }
-
-    .anotacoes {
+      text-align: center;
       margin-bottom: 30px;
-    }
-
-    .anotacoes textarea {
-      width: 100%;
-      height: 120px;
-      padding: 12px;
-      font-size: 1em;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      resize: vertical;
-      box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
-    }
-
-    .anotacoes button {
-      margin-top: 10px;
-      padding: 10px 16px;
-      background-color: #00aeff;
-      border: none;
-      color: white;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-
-    .anotacoes button:hover {
-      background-color: #007bbd;
-      transform: scale(1.05);
-    }
-
-    .paragrafo-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: #f1f1f1;
-      padding: 12px 16px;
-      margin-bottom: 10px;
-      border-radius: 8px;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-
-    .paragrafo-container:hover {
-      background-color: #e0f4ff;
-      transform: scale(1.01);
-    }
-
-    .paragrafo-container p {
-      margin: 0;
-      flex: 1;
-      font-size: 1em;
-    }
-
-    button {
-      padding: 6px 14px;
-      background-color: #00aeff;
-      border: none;
-      border-radius: 6px;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-
-    button:hover {
-      background-color: #007bbd;
-      transform: scale(1.05);
-    }
-
-    @media (max-width: 600px) {
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav .links {
-        margin-top: 10px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      .paragrafo-container {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-      }
-
-      button {
-        width: 100%;
-      }
+      color: #222;
     }
   </style>
 </head>
 <body>
+  <h1>ESTOQUE SUPERPODEROSO: produzido por Felipe</h1>
 
-  <nav>
-    <div class="logo">ESTOQUE VIU</div>
-    <div class="links">
-      <a href="https://felpsret.github.io/ESTOQUE-VIU/" target="_blank">Página Inicial</a>
-    </div>
-  </nav>
+  <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+    <button onclick="mostrarAba('ont')" class="aba-botao ativo">ONTs Desvinculadas</button>
+    <button onclick="mostrarAba('titularidade')" class="aba-botao">Trocas de Titularidade</button>
+    <button onclick="mostrarAba('estoque')" class="aba-botao">Ajuste de Estoque</button>
+  </div>
 
-  <div class="container">
-    <div class="conteudo">
-      <h1>ESTOQUE SUPERPODEROSO: produzido por Felipe</h1>
-
-      <h2>Filtrar por Categoria</h2>
-<select id="filtroCategoria" onchange="filtrarCategoria()">
-  <option value="todos">Todas</option>
-  <option value="ont">ONTs Desvinculadas</option>
-  <option value="titularidade">Troca de Titularidade</option>
-  <option value="ajuste">Ajuste de Estoque</option>
-</select>
-
-<div id="categorias">
-
-  <!-- ONTs -->
-  <div class="categoria" data-categoria="ont">
+  <div id="aba-ont" class="aba-conteudo" style="display:block;">
     <h2>ONTs DESVINCULADAS</h2>
-    <div class="paragrafo-container"><p>ONT F3 DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-    <div class="paragrafo-container"><p>ZTE E ONU DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-    <div class="paragrafo-container"><p>ONT 45F DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-    <div class="paragrafo-container"><p>G5 E ONU FIBERHOME DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-    <div class="paragrafo-container"><p>C5 E ONU FIBERHOME DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-    <div class="paragrafo-container"><p>ONT D3 DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-    <div class="paragrafo-container"><p>C20 E ONU FIBERHOME DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-    <div class="paragrafo-container"><p>ZTE E PARKS DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-    <div class="paragrafo-container"><p>ZTE E ONU MINI DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-    <div class="paragrafo-container"><p>G5 E ONU MINI DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-    <div class="paragrafo-container"><p>SR E ONU MINI DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-    <div class="paragrafo-container"><p>SR E ONU R1 DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-    <div class="paragrafo-container"><p>ZTE E ONU R1 DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-    <div class="paragrafo-container"><p>ZTE E ONU EASY LINK DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-    <div class="paragrafo-container"><p>G5 E ONU EASY LINK DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    <select id="selectOnt" class="select-abas">
+      <option disabled selected>Selecione uma opção</option>
+      <option>ONT F3 DESVINCULADA DO CLIENTE</option>
+      <option>ZTE E ONU DESVINCULADA DO CLIENTE</option>
+      <option>ONT 45F DESVINCULADA DO CLIENTE</option>
+      <option>G5 E ONU FIBERHOME DESVINCULADA DO CLIENTE</option>
+      <option>C5 E ONU FIBERHOME DESVINCULADA DO CLIENTE</option>
+      <option>ONT D3 DESVINCULADA DO CLIENTE</option>
+      <option>C20 E ONU FIBERHOME DESVINCULADA DO CLIENTE</option>
+      <option>ZTE E PARKS DESVINCULADO DO CLIENTE</option>
+      <option>ZTE E ONU MINI DESVINCULADO DO CLIENTE</option>
+      <option>G5 E ONU MINI DESVINCULADO DO CLIENTE</option>
+      <option>SR E ONU MINI DESVINCULADO DO CLIENTE</option>
+      <option>SR E ONU R1 DESVINCULADO DO CLIENTE</option>
+      <option>ZTE E ONU R1 DESVINCULADO DO CLIENTE</option>
+      <option>ZTE E ONU EASY LINK DESVINCULADO DO CLIENTE</option>
+      <option>G5 E ONU EASY LINK DESVINCULADO DO CLIENTE</option>
+    </select>
+    <button onclick="copiarSelect('selectOnt')">Copiar Selecionado</button>
   </div>
 
-  <!-- Troca de Titularidade -->
-  <div class="categoria" data-categoria="titularidade">
+  <div id="aba-titularidade" class="aba-conteudo">
     <h2>TROCAS DE TITULARIDADE</h2>
-    <div class="paragrafo-container"><p>TROCA DE TITULARIDADE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    <select id="selectTitularidade" class="select-abas">
+      <option disabled selected>Selecione uma opção</option>
+      <option>TROCA DE TITULARIDADE</option>
+    </select>
+    <button onclick="copiarSelect('selectTitularidade')">Copiar Selecionado</button>
   </div>
 
-  <!-- Ajuste de Estoque -->
-  <div class="categoria" data-categoria="ajuste">
+  <div id="aba-estoque" class="aba-conteudo">
     <h2>AJUSTE DE ESTOQUE</h2>
-    <div class="paragrafo-container"><p>VINCULADO EQUIPAMENTO</p><button onclick="copiarTexto(this)">Copiar</button></div>
-    <div class="paragrafo-container"><p>DESVINCULADO EQUIPAMENTO</p><button onclick="copiarTexto(this)">Copiar</button></div>
-    <div class="paragrafo-container"><p>AJUSTADO</p><button onclick="copiarTexto(this)">Copiar</button></div>
-    <div class="paragrafo-container"><p>DESVINCULADO EQUIPAMENTO DO CLIENTE COMO EXTRAVIADO</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    <select id="selectEstoque" class="select-abas">
+      <option disabled selected>Selecione uma opção</option>
+      <option>VINCULADO EQUIPAMENTO</option>
+      <option>DESVINCULADO EQUIPAMENTO</option>
+      <option>AJUSTADO</option>
+      <option>DESVINCULADO EQUIPAMENTO DO CLIENTE COMO EXTRAVIADO</option>
+    </select>
+    <button onclick="copiarSelect('selectEstoque')">Copiar Selecionado</button>
   </div>
-
-</div>
 
   <script>
-  function filtrarCategoria() {
-    const valor = document.getElementById("filtroCategoria").value;
-    const categorias = document.querySelectorAll(".categoria");
-
-    categorias.forEach(div => {
-      if (valor === "todos" || div.dataset.categoria === valor) {
-        div.style.display = "block";
-      } else {
-        div.style.display = "none";
+    function copiarSelect(idSelect) {
+      const select = document.getElementById(idSelect);
+      const texto = select.value;
+      if (!texto || select.selectedIndex === 0) {
+        alert("Selecione uma opção para copiar.");
+        return;
       }
-    });
-  }
-
-  function copiarTexto(botao) {
-    const texto = botao.previousElementSibling.innerText;
-    navigator.clipboard.writeText(texto).then(() => {
-      botao.innerText = "Copiado!";
-      setTimeout(() => botao.innerText = "Copiar", 1500);
-    });
-  }
-
-  function copiarAnotacoes() {
-    const texto = document.getElementById("anotacoes").value;
-    if (texto.trim()) {
       navigator.clipboard.writeText(texto).then(() => {
-        alert("Anotações copiadas com sucesso!");
+        alert("Texto copiado: " + texto);
       });
-    } else {
-      alert("O campo de anotações está vazio.");
     }
-  }
 
-  // Mostrar todos ao carregar
-  document.addEventListener("DOMContentLoaded", filtrarCategoria);
-</script>
+    function mostrarAba(aba) {
+      document.querySelectorAll('.aba-conteudo').forEach(div => div.style.display = 'none');
+      document.querySelectorAll('.aba-botao').forEach(btn => btn.classList.remove('ativo'));
+
+      document.getElementById('aba-' + aba).style.display = 'block';
+      document.querySelector(`.aba-botao[onclick="mostrarAba('${aba}')"]`).classList.add('ativo');
+    }
+  </script>
 </body>
 </html>
-
