@@ -183,61 +183,89 @@
     <div class="conteudo">
       <h1>ESTOQUE SUPERPODEROSO: produzido por Felipe</h1>
 
-      <!-- Área de Anotações -->
-      <div class="anotacoes">
-        <h2>Área de Anotações</h2>
-        <textarea id="anotacoes" placeholder="Escreva suas observações aqui..."></textarea>
-        <button onclick="copiarAnotacoes()">Copiar Anotações</button>
-      </div>
+      <h2>Filtrar por Categoria</h2>
+<select id="filtroCategoria" onchange="filtrarCategoria()">
+  <option value="todos">Todas</option>
+  <option value="ont">ONTs Desvinculadas</option>
+  <option value="titularidade">Troca de Titularidade</option>
+  <option value="ajuste">Ajuste de Estoque</option>
+</select>
 
-      <!-- Lista principal -->
-      <div class="paragrafo-container"><p>ONT F3 DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-      <div class="paragrafo-container"><p>ZTE E ONU DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-      <div class="paragrafo-container"><p>ONT 45F DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-      <div class="paragrafo-container"><p>G5 E ONU FIBERHOME DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-      <div class="paragrafo-container"><p>C5 E ONU FIBERHOME DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-      <div class="paragrafo-container"><p>ONT D3 DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-      <div class="paragrafo-container"><p>C20 E ONU FIBERHOME DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-      <div class="paragrafo-container"><p>ZTE E PARKS DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-      <div class="paragrafo-container"><p>ZTE E ONU MINI DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-      <div class="paragrafo-container"><p>G5 E ONU MINI DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-      <div class="paragrafo-container"><p>SR E ONU MINI DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-      <div class="paragrafo-container"><p>SR E ONU R1 DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-      <div class="paragrafo-container"><p>ZTE E ONU R1 DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-      <div class="paragrafo-container"><p>ZTE E ONU EASY LINK DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-      <div class="paragrafo-container"><p>G5 E ONU EASY LINK DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+<div id="categorias">
 
-      <h2>TROCAS DE TITULARIDADE</h2>
-      <div class="paragrafo-container"><p>TROCA DE TITULARIDADE</p><button onclick="copiarTexto(this)">Copiar</button></div>
-
-      <h3>AJUSTE DE ESTOQUE</h3>
-      <div class="paragrafo-container"><p>VINCULADO EQUIPAMENTO</p><button onclick="copiarTexto(this)">Copiar</button></div>
-      <div class="paragrafo-container"><p>DESVINCULADO EQUIPAMENTO</p><button onclick="copiarTexto(this)">Copiar</button></div>
-      <div class="paragrafo-container"><p>AJUSTADO</p><button onclick="copiarTexto(this)">Copiar</button></div>
-      <div class="paragrafo-container"><p>DESVINCULADO EQUIPAMENTO DO CLIENTE COMO EXTRAVIADO</p><button onclick="copiarTexto(this)">Copiar</button></div>
-    </div>
+  <!-- ONTs -->
+  <div class="categoria" data-categoria="ont">
+    <h2>ONTs DESVINCULADAS</h2>
+    <div class="paragrafo-container"><p>ONT F3 DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    <div class="paragrafo-container"><p>ZTE E ONU DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    <div class="paragrafo-container"><p>ONT 45F DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    <div class="paragrafo-container"><p>G5 E ONU FIBERHOME DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    <div class="paragrafo-container"><p>C5 E ONU FIBERHOME DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    <div class="paragrafo-container"><p>ONT D3 DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    <div class="paragrafo-container"><p>C20 E ONU FIBERHOME DESVINCULADA DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    <div class="paragrafo-container"><p>ZTE E PARKS DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    <div class="paragrafo-container"><p>ZTE E ONU MINI DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    <div class="paragrafo-container"><p>G5 E ONU MINI DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    <div class="paragrafo-container"><p>SR E ONU MINI DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    <div class="paragrafo-container"><p>SR E ONU R1 DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    <div class="paragrafo-container"><p>ZTE E ONU R1 DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    <div class="paragrafo-container"><p>ZTE E ONU EASY LINK DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    <div class="paragrafo-container"><p>G5 E ONU EASY LINK DESVINCULADO DO CLIENTE</p><button onclick="copiarTexto(this)">Copiar</button></div>
   </div>
 
-  <script>
-    function copiarTexto(botao) {
-      const texto = botao.previousElementSibling.innerText;
-      navigator.clipboard.writeText(texto).then(() => {
-        botao.innerText = "Copiado!";
-        setTimeout(() => botao.innerText = "Copiar", 1500);
-      });
-    }
+  <!-- Troca de Titularidade -->
+  <div class="categoria" data-categoria="titularidade">
+    <h2>TROCAS DE TITULARIDADE</h2>
+    <div class="paragrafo-container"><p>TROCA DE TITULARIDADE</p><button onclick="copiarTexto(this)">Copiar</button></div>
+  </div>
 
-    function copiarAnotacoes() {
-      const texto = document.getElementById("anotacoes").value;
-      if (texto.trim()) {
-        navigator.clipboard.writeText(texto).then(() => {
-          alert("Anotações copiadas com sucesso!");
-        });
+  <!-- Ajuste de Estoque -->
+  <div class="categoria" data-categoria="ajuste">
+    <h2>AJUSTE DE ESTOQUE</h2>
+    <div class="paragrafo-container"><p>VINCULADO EQUIPAMENTO</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    <div class="paragrafo-container"><p>DESVINCULADO EQUIPAMENTO</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    <div class="paragrafo-container"><p>AJUSTADO</p><button onclick="copiarTexto(this)">Copiar</button></div>
+    <div class="paragrafo-container"><p>DESVINCULADO EQUIPAMENTO DO CLIENTE COMO EXTRAVIADO</p><button onclick="copiarTexto(this)">Copiar</button></div>
+  </div>
+
+</div>
+
+  <script>
+  function filtrarCategoria() {
+    const valor = document.getElementById("filtroCategoria").value;
+    const categorias = document.querySelectorAll(".categoria");
+
+    categorias.forEach(div => {
+      if (valor === "todos" || div.dataset.categoria === valor) {
+        div.style.display = "block";
       } else {
-        alert("O campo de anotações está vazio.");
+        div.style.display = "none";
       }
+    });
+  }
+
+  function copiarTexto(botao) {
+    const texto = botao.previousElementSibling.innerText;
+    navigator.clipboard.writeText(texto).then(() => {
+      botao.innerText = "Copiado!";
+      setTimeout(() => botao.innerText = "Copiar", 1500);
+    });
+  }
+
+  function copiarAnotacoes() {
+    const texto = document.getElementById("anotacoes").value;
+    if (texto.trim()) {
+      navigator.clipboard.writeText(texto).then(() => {
+        alert("Anotações copiadas com sucesso!");
+      });
+    } else {
+      alert("O campo de anotações está vazio.");
     }
-  </script>
+  }
+
+  // Mostrar todos ao carregar
+  document.addEventListener("DOMContentLoaded", filtrarCategoria);
+</script>
 </body>
 </html>
 
