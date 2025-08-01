@@ -3,109 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Estoque Superpoderoso</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f0f0f0;
-      padding: 20px;
-    }
-
-    .aba-botao {
-      padding: 10px 16px;
-      border: none;
-      background-color: #00aeff;
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-
-    .aba-botao:hover {
-      background-color: #007bbd;
-      transform: scale(1.05);
-    }
-
-    .aba-botao.ativo {
-      background-color: #007bbd;
-    }
-
-    .aba-conteudo {
-      margin-top: 20px;
-      margin-bottom: 30px;
-      display: none;
-    }
-
-    .select-abas {
-      width: 100%;
-      padding: 10px;
-      font-size: 1em;
-      border-radius: 6px;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #222;
-    }
-  </style>
+  <title>Estoque</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <h1>ESTOQUE SUPERPODEROSO: produzido por Felipe</h1>
+<body class="bg-gray-100 text-gray-800 font-sans p-6">
 
-  <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
-    <button onclick="mostrarAba('ont')" class="aba-botao ativo">ONTs Desvinculadas</button>
-    <button onclick="mostrarAba('titularidade')" class="aba-botao">Trocas de Titularidade</button>
-    <button onclick="mostrarAba('estoque')" class="aba-botao">Ajuste de Estoque</button>
+  <!-- Título -->
+  <h1 class="text-3xl font-bold text-center mb-8 sm:mb-10">
+    Estoque 
+  </h1>
+
+  <!-- Logo -->
+  <div class="flex justify-center mb-8 sm:mb-10">
+    <img src="body.png" alt="Logo Viu Internet" class="h-16 sm:h-20 object-contain rounded-lg shadow" />
   </div>
 
-  <div id="aba-ont" class="aba-conteudo" style="display:block;">
-    <h2>ONTs DESVINCULADAS</h2>
-    <select id="selectOnt" class="select-abas">
-      <option disabled selected>Selecione uma opção</option>
-      <option>ONT F3 DESVINCULADA DO CLIENTE</option>
-      <option>ZTE E ONU DESVINCULADA DO CLIENTE</option>
-      <option>ONT 45F DESVINCULADA DO CLIENTE</option>
-      <option>G5 E ONU FIBERHOME DESVINCULADA DO CLIENTE</option>
-      <option>C5 E ONU FIBERHOME DESVINCULADA DO CLIENTE</option>
-      <option>ONT D3 DESVINCULADA DO CLIENTE</option>
-      <option>C20 E ONU FIBERHOME DESVINCULADA DO CLIENTE</option>
-      <option>ZTE E PARKS DESVINCULADO DO CLIENTE</option>
-      <option>ZTE E ONU MINI DESVINCULADO DO CLIENTE</option>
-      <option>G5 E ONU MINI DESVINCULADO DO CLIENTE</option>
-      <option>SR E ONU MINI DESVINCULADO DO CLIENTE</option>
-      <option>SR E ONU R1 DESVINCULADO DO CLIENTE</option>
-      <option>ZTE E ONU R1 DESVINCULADO DO CLIENTE</option>
-      <option>ZTE E ONU EASY LINK DESVINCULADO DO CLIENTE</option>
-      <option>G5 E ONU EASY LINK DESVINCULADO DO CLIENTE</option>
-    </select>
-    <button onclick="copiarSelect('selectOnt')">Copiar Selecionado</button>
+  <!-- Abas -->
+  <div class="flex flex-wrap gap-4 justify-center mb-8">
+    <button onclick="mostrarAba('ont')" class="aba-botao w-full sm:w-auto text-lg sm:text-base px-4 py-2 rounded bg-blue-500 text-white font-semibold shadow hover:bg-blue-600 transition">📶 Equipamentos Desvinculados</button>
+    <button onclick="mostrarAba('titularidade')" class="aba-botao w-full sm:w-auto text-lg sm:text-base px-4 py-2 rounded bg-blue-500 text-white font-semibold shadow hover:bg-blue-600 transition">🔄 Trocas de Titularidade</button>
+    <button onclick="mostrarAba('estoque')" class="aba-botao w-full sm:w-auto text-lg sm:text-base px-4 py-2 rounded bg-blue-500 text-white font-semibold shadow hover:bg-blue-600 transition">📦 Ajuste de Estoque</button>
   </div>
 
-  <div id="aba-titularidade" class="aba-conteudo">
-    <h2>TROCAS DE TITULARIDADE</h2>
-    <select id="selectTitularidade" class="select-abas">
-      <option disabled selected>Selecione uma opção</option>
-      <option>TROCA DE TITULARIDADE</option>
-    </select>
-    <button onclick="copiarSelect('selectTitularidade')">Copiar Selecionado</button>
-  </div>
+  <!-- Componentes reutilizáveis de aba (gerados via JS) -->
+  <div id="conteudo-abas"></div>
 
-  <div id="aba-estoque" class="aba-conteudo">
-    <h2>AJUSTE DE ESTOQUE</h2>
-    <select id="selectEstoque" class="select-abas">
-      <option disabled selected>Selecione uma opção</option>
-      <option>VINCULADO EQUIPAMENTO</option>
-      <option>DESVINCULADO EQUIPAMENTO</option>
-      <option>AJUSTADO</option>
-      <option>DESVINCULADO EQUIPAMENTO DO CLIENTE COMO EXTRAVIADO</option>
-    </select>
-    <button onclick="copiarSelect('selectEstoque')">Copiar Selecionado</button>
-  </div>
-
+  <!-- Script principal -->
   <script>
+    const abas = [
+      {
+        id: 'ont',
+        titulo: '📶 Classificações para Encerramento de Atendimento de Retiradas',
+        selectId: 'selectOnt',
+        inputId: 'novaOpcaoOnt',
+        opcoesPadrao: [
+          "ONT F3 DESVINCULADA DO CLIENTE",
+          "ZTE E ONU DESVINCULADA DO CLIENTE",
+          "ONT 45F DESVINCULADA DO CLIENTE",
+          "G5 E ONU FIBERHOME DESVINCULADA DO CLIENTE",
+          "C5 E ONU FIBERHOME DESVINCULADA DO CLIENTE",
+          "ONT D3 DESVINCULADA DO CLIENTE",
+          "C20 E ONU FIBERHOME DESVINCULADA DO CLIENTE",
+          "ZTE E PARKS DESVINCULADO DO CLIENTE",
+          "ZTE E ONU MINI DESVINCULADO DO CLIENTE",
+          "G5 E ONU MINI DESVINCULADO DO CLIENTE",
+          "SR E ONU MINI DESVINCULADO DO CLIENTE",
+          "SR E ONU R1 DESVINCULADO DO CLIENTE",
+          "ZTE E ONU R1 DESVINCULADO DO CLIENTE",
+          "ZTE E ONU EASY LINK DESVINCULADO DO CLIENTE",
+          "G5 E ONU EASY LINK DESVINCULADO DO CLIENTE"
+        ]
+      },
+      {
+        id: 'titularidade',
+        titulo: '🔄 TROCAS DE TITULARIDADE',
+        selectId: 'selectTitularidade',
+        inputId: 'novaOpcaoTitularidade',
+        opcoesPadrao: ["TROCA DE TITULARIDADE"]
+      },
+      {
+        id: 'estoque',
+        titulo: '📦 AJUSTE DE ESTOQUE',
+        selectId: 'selectEstoque',
+        inputId: 'novaOpcaoEstoque',
+        opcoesPadrao: [
+          "VINCULADO EQUIPAMENTO",
+          "DESVINCULADO EQUIPAMENTO",
+          "AJUSTADO",
+          "DESVINCULADO EQUIPAMENTO DO CLIENTE COMO EXTRAVIADO"
+        ]
+      }
+    ];
+
+    function criarAbas() {
+      const container = document.getElementById('conteudo-abas');
+      abas.forEach(({ id, titulo, selectId, inputId, opcoesPadrao }) => {
+        const selectOptions = carregarOpcoes(selectId, opcoesPadrao)
+          .map(opcao => `<option>${opcao}</option>`)
+          .join('');
+
+        container.innerHTML += `
+          <div id="aba-${id}" class="aba-conteudo ${id === 'ont' ? 'block' : 'hidden'} bg-white rounded-lg shadow-md p-6 max-w-4xl mx-auto mb-6">
+            <h2 class="text-2xl font-bold text-center mb-4">${titulo}</h2>
+            <select id="${selectId}" class="w-full p-3 border rounded-lg mb-4">
+              <option disabled selected>Selecione uma opção</option>
+              ${selectOptions}
+            </select>
+            <button onclick="copiarSelect('${selectId}')" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded shadow mb-4">📋 Copiar Selecionado</button>
+            <div class="mt-4 space-y-2">
+              <input type="text" id="${inputId}" placeholder="Nova opção" class="w-full text-base p-2 border rounded" />
+              <div class="flex flex-col sm:flex-row gap-2">
+                <button onclick="adicionarOpcao('${selectId}', '${inputId}')" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded shadow">➕ Adicionar</button>
+                <button onclick="removerOpcaoSelecionada('${selectId}')" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded shadow">❌ Remover Selecionado</button>
+              </div>
+
+              ${id === 'titularidade' ? `
+              <div class="mt-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">📇 Dados do Cliente Anterior</h3>
+                <label for="nomeCliente" class="block text-sm font-medium text-gray-600">Nome:</label>
+                <input id="nomeCliente" type="text" placeholder="Digite o nome completo" class="w-full text-base p-2 border rounded mb-4" />
+                <label for="enderecoCliente" class="block text-sm font-medium text-gray-600">Endereço:</label>
+                <textarea id="enderecoCliente" placeholder="Digite o endereço completo" class="w-full text-base p-2 border rounded resize-none mb-4" rows="3"></textarea>
+              </div>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function mostrarAba(aba) {
+      document.querySelectorAll('.aba-conteudo').forEach(div => div.classList.add('hidden'));
+      document.getElementById('aba-' + aba).classList.remove('hidden');
+      const botoes = document.querySelectorAll('.aba-botao');
+      botoes.forEach(btn => btn.classList.remove('bg-blue-700'));
+      const botaoAtivo = [...botoes].find(btn => btn.getAttribute('onclick') === `mostrarAba('${aba}')`);
+      if (botaoAtivo) botaoAtivo.classList.add('bg-blue-700');
+    }
+
     function copiarSelect(idSelect) {
       const select = document.getElementById(idSelect);
       const texto = select.value;
@@ -113,18 +128,59 @@
         alert("Selecione uma opção para copiar.");
         return;
       }
-      navigator.clipboard.writeText(texto).then(() => {
-        alert("Texto copiado: " + texto);
-      });
+      navigator.clipboard.writeText(texto).then(() => alert("Texto copiado: " + texto));
     }
 
-    function mostrarAba(aba) {
-      document.querySelectorAll('.aba-conteudo').forEach(div => div.style.display = 'none');
-      document.querySelectorAll('.aba-botao').forEach(btn => btn.classList.remove('ativo'));
-
-      document.getElementById('aba-' + aba).style.display = 'block';
-      document.querySelector(`.aba-botao[onclick="mostrarAba('${aba}')"]`).classList.add('ativo');
+    function adicionarOpcao(selectId, inputId) {
+      const select = document.getElementById(selectId);
+      const input = document.getElementById(inputId);
+      const texto = input.value.trim();
+      if (!texto) return alert("Digite um valor para adicionar.");
+      if ([...select.options].some(opt => opt.text.toLowerCase() === texto.toLowerCase()))
+        return alert("Essa opção já existe.");
+      const novaOpcao = document.createElement("option");
+      novaOpcao.text = texto;
+      novaOpcao.value = texto;
+      select.appendChild(novaOpcao);
+      input.value = "";
+      salvarOpcao(selectId, texto);
     }
+
+    function removerOpcaoSelecionada(selectId) {
+      const select = document.getElementById(selectId);
+      if (select.selectedIndex <= 0) return alert("Selecione uma opção válida para remover.");
+      const textoRemovido = select.options[select.selectedIndex].text;
+      select.remove(select.selectedIndex);
+      removerOpcaoArmazenada(selectId, textoRemovido);
+    }
+
+    function salvarOpcao(selectId, texto) {
+      const chave = `opcoes_${selectId}`;
+      const armazenadas = JSON.parse(localStorage.getItem(chave)) || [];
+      armazenadas.push(texto);
+      localStorage.setItem(chave, JSON.stringify(armazenadas));
+    }
+
+    function removerOpcaoArmazenada(selectId, texto) {
+      const chave = `opcoes_${selectId}`;
+      let armazenadas = JSON.parse(localStorage.getItem(chave)) || [];
+      armazenadas = armazenadas.filter(op => op !== texto);
+      localStorage.setItem(chave, JSON.stringify(armazenadas));
+    }
+
+    function carregarOpcoes(selectId, padroes) {
+      const chave = `opcoes_${selectId}`;
+      const armazenadas = JSON.parse(localStorage.getItem(chave)) || [];
+      return [...padroes, ...armazenadas];
+    }
+
+    criarAbas();
   </script>
+
+  <!-- Rodapé -->
+  <footer class="bg-white shadow-inner mt-10 py-6 text-center text-sm sm:text-base text-gray-600 rounded-t-lg">
+    <p>&copy; 2025 <strong>Felipe dos Santos</strong>. Todos os direitos reservados.</p>
+    <p class="mt-1">Desenvolvido com 💙 para a equipe do setor do estoque da Viu Internet.</p>
+  </footer>
 </body>
 </html>
